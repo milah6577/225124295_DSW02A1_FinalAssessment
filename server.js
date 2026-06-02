@@ -182,3 +182,58 @@ app.get("/summary", async (req, res) => {
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
+
+/*
+
+theory
+
+Question 1
+
+1a. Using student numbers data type as Number but using the minlength
+    for the 9 digits validation rule.
+    studentNumber:{type: Number,minlength:9},
+    The minlength function is used for strings and not numbers.
+    The validation rule was therefore not used correctly and will not
+    run correctly.
+
+ b. The ticketId is meant the be unique as said in the validation rules
+    but is not.
+    ticketId:{type: String, required: true},
+    The function will now allow duplicates of the ticketId when there is 
+    only meant to be one uniquely identified ticketId.
+    This does not follow the validation rules stating that ticketId must
+    be uniquely identified.
+
+ c. The code is missing the app.use(express.json()).
+    app.use(express.urlencoded())
+    without is the Api cannot parse JSON reques bodies only URL codes.
+    Therefore POST/PUT requests using JSON will not be able to populate req.body.
+
+ d. app.listen(3000)
+    there is no console.log to ensure the server runs successfully.
+    this wont allow us to check is the program runs as it should or allow
+    users to run tests.
+   
+
+Question 2
+
+2.2 - T101: Pass, Inserted, No duplicates
+    - T102: Fail,Rejected: validation, No duplicates
+    - T103: Fail,Rejected: validation, No duplicates
+    - T103: Pass,Rejected: Duplication, duplicates
+
+Question 3
+3.5 
+  "issueCategory": "Printer" – Fail:  must be one of the options given ["Network", "Hardware", "Software", "Login"]
+  "priorityLevel": "Urgent" – succeed:
+  "description": "Help" – fail:  must contain at least 10 variables.
+  "studentNumber": "999999999" – pass: contain 9 values.
+
+Question 4
+4.4
+ Network : 3
+Software: 1
+ Login: 1
+ Hardware: 1
+
+ */
